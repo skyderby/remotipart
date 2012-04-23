@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
     "lib/remotipart/request_helper.rb",
     "lib/remotipart/view_helper.rb",
     "remotipart.gemspec",
+    "vendor/assets/javascripts/jquery.formdata-transport.js",
     "vendor/assets/javascripts/jquery.iframe-transport.js",
     "vendor/assets/javascripts/jquery.remotipart.js"
   ]
