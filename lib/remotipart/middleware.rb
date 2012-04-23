@@ -17,13 +17,14 @@ module Remotipart
       end
 
       if params
-        # This was using an iframe transport, and is therefore an XHR
-        # This is required if we're going to override the http_accept
-        if params['X-Requested-With'] == 'IFrame'
+        if params['X-Requested-With'] == 'IFrame' || env['HTTP_X_REQUESTED_WITH'] == 'FormData'
+          params['remotipart_submitted'] = params['X-Requested-With'] || env['HTTP_X_REQUESTED_WITH']
+          # This was using a custom transport, and is therefore an XHR
+          # This is required if we're going to override the http_accept
           env['HTTP_X_REQUESTED_WITH'] = 'xmlhttprequest'
         end
 
-        # Override the accepted format, because it isn't what we really want
+        # For iFrame transport, override the accepted format, because it isn't what we really want
         if params['X-Http-Accept']
           env['HTTP_ACCEPT'] = params['X-Http-Accept']
         end
